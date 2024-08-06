@@ -81,7 +81,7 @@ withEnv(['JAVA_HOME=/cloudbees/buildtools/jdk/jdk-11','ARTIFACTORY_AUTH_TOKEN='-
 		{
 		script{
 		sh 'gradle.processTestResources'
-		sh 'gradle.
+		sh 'gradle.ffg
 		
 		
 																										
