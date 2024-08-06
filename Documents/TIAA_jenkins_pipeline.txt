@@ -81,7 +81,24 @@ withEnv(['JAVA_HOME=/cloudbees/buildtools/jdk/jdk-11','ARTIFACTORY_AUTH_TOKEN='-
 		{
 		script{
 		sh 'gradle.processTestResources'
-		sh 'gradle.
+		sh 'gradle.runMyTiaaAccountUnlockInParallel-Dselenium.browser="remote" -Dselenium.remote.saucelab.user="sso-TIAA-clabuser" -Dselenium.remote.saucelab.accesskey="---------------" -Dselenium.remote.browser.type=$browser -Dselenium.remote.browser.platform="windows" -Dselenium.remote.browser.version=$browser_version -Dselenium.remote.saucelab="true" -Dselenium.testEnvironment=$environment -Dselenium.remote.buildName=MyTIAA_authentication_Account_unlock_$environment_$BUILD_NUMBER -Dselenium.updateDBExecutionFlag=No -Dselenium.buildNameMyTIAA_authentication_Account_unlock_$environment _$BUILD_NUMBER -Dselenium.projectName=MyTIAA_authentication_Account_unlockA92381 -Dselenium.CMDB_ID
+		}
+		
+		}
+		failFast:false
+		}
+		}
+		catch(e)
+		{
+		currentBuild.result="FAILURE"
+		echo e.toString()
+		}
+		stage('cucumberReport'){
+		Cucumber FailedFeatureNumber:-1, FailedScenarioNumber:-1,failedStepsNumber:-1,failIncludePattern:'**/feature.json',pendingstepsNumber:-1,skipEmptyJSONFiles:true,skippedStepNumber:-1,sortingMethod:'ALPHABETICAL',undefinedStepNumber:-1,hideEmptyHooks:true
+		}
+		}
+		}
+		}
 		
 		
 																										
